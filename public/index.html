@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="styles.css">
     <title>Music Player</title>
     <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: left;
+            margin-bottom: 20px;
+        }
         .track-item {
             display: flex;
             align-items: center;
@@ -14,10 +22,21 @@
         .track-item button {
             margin-right: 15px;
         }
+        ul {
+            padding: 0;
+            list-style-type: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="header">
+            <h1>Music Streaming Platform</h1>
+            <ul>
+                <li>Songs hosted with Google Cloud Storage</li>
+                <li>Application hosted with MongoDB Atlas</li>
+            </ul>
+        </div>
         <ul id="track-list"></ul>
         <div class="player">
             <audio id="audio" src=""></audio>
@@ -29,4 +48,3 @@
     <script src="scripts.js"></script>
 </body>
 </html>
-

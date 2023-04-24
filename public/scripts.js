@@ -12,11 +12,6 @@ async function fetchTracks() {
     const response = await fetch('/api/tracks');
     tracks = await response.json();
     displayTracks();
-
-    // Preload the first track
-    if (tracks.length > 0) {
-        audio.src = tracks[0].file;
-    }
 }
 
 function togglePlayPauseIcon(button, isPlaying) {
@@ -36,13 +31,11 @@ function displayTracks() {
         const trackInfo = document.createElement('span');
         togglePlayPauseIcon(trackButton, false); // Set initial icon to play icon
         trackButton.addEventListener('click', () => {
-            if (currentTrackIndex === index && audio.src) {
+            if (currentTrackIndex === index) {
                 // Toggle between play and pause for the current track
                 isPlaying ? audio.pause() : audio.play();
                 togglePlayPauseIcon(trackButton, isPlaying);
             } else {
-                // Update isPlaying variable before playing the selected track
-                isPlaying = true;
                 // Play the selected track
                 currentTrackIndex = index;
                 playTrack();
@@ -76,6 +69,8 @@ function playTrack() {
     togglePlayPauseIcon(allTrackButtons[currentTrackIndex], true);
 }
 
+
+
 playBtn.addEventListener('click', () => {
     isPlaying ? audio.pause() : audio.play();
 });
@@ -106,4 +101,3 @@ prevBtn.addEventListener('click', () => {
 });
 
 fetchTracks();
-
